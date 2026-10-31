@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% block title %} Home {% endblock %}
+{% block content %}
+    <div class="container">
+        <h1> Your Expense Tracker </h1>
+        {% if user.is_authenticated %}
+        <!-- FILTER -->
+        <h4>Filter By:</h4>
+        <form class="d-flex flex-wrap align-items-center g-3" method="post">
+            <div class="d-flex col-auto form-group">
+                <label class="form-label" for="category">Category: </label>
+                <select name="category" id="category" class="form-control">
+                    <option value=""></option>
+                    {% for value, label in expense_category %}
+                    <option value="{{value}}">{{label}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group col-auto">
+                <div class="col-auto col-form-label w-auto" for="amount">Amount:</div>
+                <div class="d-flex w-auto">
+                    <label for="amt_less_than">less than: </label>
+                    <input class="form-control w-auto" type="number" name="amt_less_than" id="amt_less_than">
+                    <label for="amt_greater_than">Greater than: </label><input class="form-control w-auto" type="number" name="amt_greater_than" id="amt_greater_than">
+                </div>
+            </div>
+
+            <div class="d-flex col-auto form-group">
+                <label class="form-label" for="payment_method">Payment Method: </label>
+                <select name="payment_method" id="payment_method" class="form-control">
+                    <option value=""></option>
+                    <option value="cash">Cash</option>
+                    <option value="electronic">Electronic</option>
+                </select>
+            </div>
+
+            <div class="form-group col-auto">
+                <div class="col-auto col-form-label w-auto" for="date">Date:</div>
+                <div class="d-flex w-auto">
+                    <label for="start_date">From: </label><input class="form-control w-auto" type="date" name="start_date" id="start_date">
+                    <label for="end_date">To: </label><input class="form-control w-auto" type="date" name="amt_greater_than" id="amt_greater_than">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+        <br>
+
+        <!-- EXPENSES -->
+        <div class="d-flex justify-content-between mb-2">
+            <h2>Expenses:</h2>
+            <input type="hidden" name="expense" id="expense" value="{{exp_json}}">
+            <div class="d-flex justify-content-between">
+                <a href="/to_json" class="btn btn-info btn-lg mx-3">JSON</a>
+                <a href="/to_csv" class="btn btn-info btn-lg">CSV</a>
+            </div>
+        </div>
+
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Amount (#)</th>
+                    <th scope="col">Payment Method</th>
+                    <th scope="col">Date</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for expense in expenses %}
+                    <tr>
+                        <th scope="row">{{loop.index}}</th>
+                        <td>{{expense.title.capitalize()}}</td>
+                        <td>{{expense.category.capitalize()}}</td>
+                        <td>{{expense.amount}}</td>
+                        <td>{{expense.payment_method.capitalize()}}</td>
+                        <td>{{expense.date_created}}</td>
+                        <td>
+                            <a href="/update_expense/{{expense.id}}" class="btn btn-secondary btn-sm">Update</a>
+                            <a href="/delete_expense/{{expense.id}}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <th></th>
+                    <th>Total</th>
+                    <th></th>
+                    <th># {{total_amount}}</th>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- SUMMARY -->
+         <h2>Summary:</h2>
+         <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Total Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category, amount in cat_summary %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{category.capitalize()}}</td>
+                    <td>{{amount}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+         </table>
+        
+        {% else %}
+        <h2>Login in to View Expenses</h2>
+        <a href="/login">
+            <button class="btn btn-outline-primary btn-sm">Login</button>
+        </a>
+        {% endif %}
+    </div>
+
+    <script>
+        function saveJSON(){
+            data = document.querySelector('#expense').value
+            console.log(typeof data)
+            data = JSON.parse(data)
+            console.log(typeof data)
+            // for (x in data){
+            //     console.log(x)
+            // }
+            console.log(data)
+        }
+    </script>
+    
+{% endblock %}
