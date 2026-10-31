@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %} Sign Up {% endblock %}
+{% block content %}
+
+<div class="container mt-5">
+    <h1>Sign Up Page</h1>
+    <form action="/signup" method="post">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Confirm Password:</label>
+            <input type="password" class="form-control" placeholder="Enter Password Again" id="repassword" name="repassword" required>
+        </div>
+        <div align="center">
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </div>
+
+</div>
+{% endblock %}

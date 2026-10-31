@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %} Home {% endblock %}
+{% block content %}
+    <div class="container">
+        <h1> Add Expense </h1>
+        <form method="post">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input class="form-control" type="text" name="title" id="title" placeholder="Enter Title">
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount:</label>
+                <input class="form-control" type="number" name="amount" id="amount" placeholder="Enter Amount">
+            </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select class="form-control" name="category" id="category">
+                    <option value="">--Select Category--</option>
+                    <option value="food">Food</option>
+                    <option value="transport">Transport</option>
+                    <option value="utilities">Utilities</option>
+                    <option value="entertainment">Entertainment</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="payment_method">Payment Method:</label>
+                <select class="form-control" name="payment_method" id="payment_method">
+                    <option value="">--Select Payment Method--</option>
+                    <option value="cash">Cash</option>
+                    <option value="electronic">Electronic</option>
+                </select>
+            </div>
+            <div align="center">
+                <button type="submit" class="btn btn-primary">Add Expense</button>
+            </div>
+            
+        </form>
+
+    </div>
+    
+{% endblock %}

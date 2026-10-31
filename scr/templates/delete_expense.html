@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %} Delete Expense {% endblock %}
+{% block content %}
+    <div class="container">
+        <h1> Delete Expense </h1>
+        <form method="post">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input value="{{expense.title}}" class="form-control" type="text" name="title" id="title" placeholder="Enter Title" disabled>
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount:</label>
+                <input value="{{expense.amount}}" class="form-control" type="number" name="amount" id="amount" placeholder="Enter Amount" disabled>
+            </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select value="food" class="form-control" name="category" id="category" disabled>
+                    <option value="food"{%if expense.category == 'food' %}selected{% endif %}>Food</option>
+                    <option value="transport"{%if expense.category == 'transport' %}selected{% endif %}>Transport</option>
+                    <option value="utilities"{%if expense.category == 'utilities' %}selected{% endif %}>Utilities</option>
+                    <option value="entertainment"{%if expense.category == 'entertainment' %}selected{% endif %}>Entertainment</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="payment_method">Payment Method:</label>
+                <select class="form-control" name="payment_method" id="payment_method" disabled>
+                    <option value="cash"{%if expense.payment_method == 'cash' %}selected{% endif %}>Cash</option>
+                    <option value="electronic"{%if expense.payment_method == 'electronic' %}selected{% endif %}>Electronic</option>
+                </select>
+            </div>
+            <div align="center">
+                <button type="submit" class="btn btn-danger">Delete Expense</button>
+            </div>
+            
+        </form>
+
+    </div>
+    
+{% endblock %}
