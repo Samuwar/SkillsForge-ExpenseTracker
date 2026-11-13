@@ -1,6 +1,6 @@
 # TECHYASTUTE EXPENSE TRACKER
 
-A full-stack, server-rendered web application built with Python and [Flask](https://github.com) for managing personal expenses, tracking budgets, and viewing financial breakdowns.
+A full-stack, server-rendered web application built with Python and [Flask](https://github.com) to manage personal expenses, track budgets, and view financial breakdowns.
 
 ---
 
@@ -14,7 +14,7 @@ A full-stack, server-rendered web application built with Python and [Flask](http
 
 ---
 
-## tech Stack
+## Tech Stack
 
 - **Backend / Routing**: Python 3.10+, Flask
 - **Frontend**: Jinja2 Templates, HTML5, CSS3 (Bootstrap)
@@ -73,7 +73,6 @@ pip install -r requirements.txt
 ### 4. Configure Variables
 Create a `.env` file in the root directory:
 ```env
-FLASK_APP=run.py
 FLASK_ENV=development
 SECRET_KEY=your-super-secret-form-key-here
 SQLALCHEMY_DATABASE_URI=sqlite:///expenses.db
@@ -81,7 +80,7 @@ SQLALCHEMY_DATABASE_URI=sqlite:///expenses.db
 
 ### 5. Run the Application
 ```bash
-flask run
+python app.py
 ```
 Open your browser and navigate to `http://127.0.0.1:5000`.
 
