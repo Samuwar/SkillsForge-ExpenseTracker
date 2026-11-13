@@ -92,6 +92,7 @@ Open your browser and navigate to `http://127.0.0.1:5000`.
 | Route | HTTP Method | View Template | Description |
 | :--- | :--- | :--- | :--- |
 | `/` | `GET` | `index.html` | User dashboard displaying recent expenses and totals. |
+| `/` | `POST` | `index.html` | Filter Expense |
 | `/login` | `GET`, `POST` | `login.html` | Handles user authentication and session management. |
 | `/signup` | `GET`, `POST` | `signup.html`| Account creation page. |
 | `/create_expense` | `GET`, `POST` | `create_expense.html` | Form to create a new expense item. |
